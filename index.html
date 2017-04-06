@@ -1,0 +1,52 @@
+<html ng-app="todoApp">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Nimish's Todo App</title>
+	<link rel="stylesheet" type="text/css" href="css/icoMoon.css" />
+	<link rel="stylesheet" type="text/css" href="css/todoApp.css" />
+</head>
+
+<body ng-controller="MainController as controller">
+
+	<div id="controls">
+		<div class="controlButton" ng-click="controller.createList()">New list<span class="icomoon icon-plus"></span></div>
+		<div class="controlButton" ng-click="controller.saveLists()">Save<span class="icomoon icon-floppy-disk"></span></div>
+	</div><!-- end #controls -->
+
+	<div id="todoLists">
+		<div class="todoList" ng-repeat="todoList in controller.todoLists" >
+			<div class="todoListHeader">
+				<div class="todoListHeaderLeft">
+					<div class="todoListName">
+						{{ todoList.listName }}
+					</div><!-- end .todoListName -->
+				</div><!-- end .todoListHeaderLeft -->
+				<div class="todoListHeaderRight">
+					<div class="listButton todoListDelete"><span class="icomoon icon-bin" ng-click="controller.deleteList(todoList.listId)"></span></div>
+					<div class="listButton todoListAddItem" ng-click="controller.addListItem(todoList.listId)"><span class="icomoon icon-plus"></span></div>
+					<div class="listButton todoListEditName"><span class="icomoon icon-pencil"></span></div>
+				</div><!-- end .todoListHeaderRight -->
+			</div><!-- end .todoListHeader -->
+			<div class="todoListItems">
+				<div class="todoItem" ng-repeat="todoItem in todoList.listItems | orderBy: 'order'">
+					<div class="todoItemLeft">
+						<div class="todoItemName">
+							{{ todoItem.taskName }}
+						</div><!-- end .todoItemName -->
+					</div><!-- end .todoItemLeft -->
+					<div class="todoItemRight">
+						<div class="listItemButton todoItemStatus icomoon" ng-class="todoItem.done? 'done icon-checkmark' : 'notDone' " ng-click="controller.toggleTaskStatus(todoItem.id)"></div>
+						<div class="listItemButton todoItemDelete"><span class="icomoon icon-bin" ng-click="controller.deleteListItem(todoList.listId, todoItem.id)"></span></div>
+						<div class="listItemButton todoItemEdit"><span class="icomoon icon-pencil"></span></div>
+					</div><!-- end .todoItemRight -->
+				</div><!-- end .todoList -->
+			</div><!-- end .todoListItems -->
+		</div><!-- end .todoList -->
+	</div><!-- end #todoLists -->
+
+	<script type="text/javascript" src="jslib/angular.min.js"></script>
+	<script type="text/javascript" src="js/todoApp.js"></script>
+
+</body>
+</html>

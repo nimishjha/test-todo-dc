@@ -1,0 +1,48 @@
+“Will,
+
+The programming task below for Nimish should be quite easy to do. We are not looking for production quality, just a proof of concept within a few hours max.
+
+If the source code can be delivered beforehand (eg github or zip) we will take a look before interview and it will give us a simple framework for interview discussion.
+
+Thanks
+
+John
+
+Task
+
+A simple to-do List web site. The user should be able to create multiple named lists. For each list you should be able to create/edit/delete tasks as well as reorder and mark them as done.
+
+Front End (JS)
+
+    Angular 1.x
+    Bootstrap (with some customisation)
+
+Backend (C#)
+
+    Web API
+    Your choice of persistency
+
+Just some specifics on what we are looking for from the assignment. As we said we don’t need anything fancy but what we do want to see is some clean well thought out code. Usability / look and feel are also important, this is a big part of the job.
+
+Bootstrap
+
+Familiar with bootstrap UI concepts and responsive design (What it would look like on a desktop and mobile device).
+
+CSS
+
+We want to see some examples of additional/bootstrap customised CSS. Specifically custom classes.
+
+Angular
+
+From the angular side we want to see some good use of Angular concepts, controllers, services, factory’s and directives.
+
+C#
+
+For the backend we are looking for some clean code following SOLID principles. Appropriate WebAPi methods following naming standards.
+
+Below is question and answer regarding C# that I asked on your behalf.
+
+“Good question
+
+The backend technology doesn’t really matter but we would like to see some data flowing from the backend to the client, he can use any technology he likes.
+
