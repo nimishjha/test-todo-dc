@@ -45,8 +45,7 @@
 							</div><!-- end .todoListHeaderRight -->
 						</div><!-- end .todoListHeader -->
 						<div class="todoListItems" html-sortable="controller.sortableOptions" ng-model="todoList.listItems">
-							<!-- <div class="todoItem" ng-repeat="todoItem in todoList.listItems | orderBy: 'order'"> -->
-							<div class="todoItem" ng-repeat="todoItem in todoList.listItems">
+							<div class="todoItem" ng-repeat="todoItem in todoList.listItems | orderBy: 'order'">
 								<div class="todoItemLeft">
 									<div class="todoItemDragHandle">
 										<span class="icomoon icon-pushpin"></span>

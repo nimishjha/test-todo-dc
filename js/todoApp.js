@@ -2,11 +2,13 @@ var todoApp = angular.module('todoApp', ["html5.sortable"]);
 
 todoApp.controller('MainController', [function() {
 	var self = this;
-	self.getNewListName = false;
 	self.todoLists = [];
 
 	self.sortableOptions = {
-		handle:'.todoItemDragHandle'
+		handle:'.todoItemDragHandle',
+		stop: function(list) {
+			self.reorderList(list);
+		}
 	};
 
 	function List(listName)
@@ -23,6 +25,7 @@ todoApp.controller('MainController', [function() {
 		this.id = self.createUUID("todoItem");
 		this.done = false;
 		this.editable = false;
+		this.order = listItem.order;
 	}
 
 	//
@@ -69,6 +72,7 @@ todoApp.controller('MainController', [function() {
 		listItem.taskName += " " + self.todoLists[targetListIndex].listItems.length + "]";
 		if(targetListIndex !== -1)
 		{
+			listItem.order = self.todoLists[targetListIndex].listItems.length;
 			self.todoLists[targetListIndex].listItems.push(listItem);
 		}
 		else
@@ -76,6 +80,7 @@ todoApp.controller('MainController', [function() {
 			console.warn("Could not get list with id " + listId);
 			return;
 		}
+		// console.log(JSON.stringify(self.todoLists));
 	};
 
 	self.deleteListItem = function(listId, targetItemId)
@@ -98,6 +103,12 @@ todoApp.controller('MainController', [function() {
 		{
 			console.warn("Could not get list with id " + listId);
 		}
+	};
+
+	self.reorderList = function(list)
+	{
+		for(var i = 0, ii = list.length; i < ii; i++)
+			list[i].order = i;
 	};
 
 	self.enableEditingName = function(item)
