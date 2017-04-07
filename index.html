@@ -21,47 +21,52 @@
 			</div><!-- end .row -->
 		</div><!-- end .container-fluid -->
 
+		<div class="spacer15">
+		</div><!-- end .spacer15 -->
+
 		<div class="container">
 			<div id="todoLists" class="row">
 				<div class="todoList col-md-6 col-sm-12" ng-repeat="todoList in controller.todoLists">
-					<div class="todoListHeader">
-						<div class="todoListHeaderLeft">
-							<div class="todoListName transitionHover" ng-if="!todoList.editable" ng-click="controller.enableEditingName(todoList)">
-								{{ todoList.listName }}
-							</div><!-- end .todoListName -->
-							<div class="todoListNameEdit" ng-if="todoList.editable">
-								<input type="text" class="listNameInput" ng-model="todoList.listName" focus-element="todoList.editable" on-enter-or-escape="controller.disableEditingName(todoList)" ng-blur="controller.disableEditingName(todoList)" ng-focus="controller.clearIfDefault($event)" />
-							</div><!-- end .todoListNameEdit -->
-						</div><!-- end .todoListHeaderLeft -->
-						<div class="todoListHeaderRight">
-							<div class="listButton transitionHover todoListDelete"><span class="icomoon icon-bin" ng-click="controller.deleteList(todoList.listId)"></span></div>
-							<div class="listButton transitionHover todoListAddItem" ng-click="controller.addListItem(todoList.listId)"><span class="icomoon icon-plus"></span></div>
-							<div class="listButton transitionHover todoListEditName"><span class="icomoon icon-pencil" ng-click="controller.enableEditingName(todoList)" ng-show="!todoList.editable"></span></div>
-							<div class="listButton transitionHover todoListEditName"><span class="icomoon icon-pencil" ng-click="controller.disableEditingName(todoList)" ng-show="todoList.editable"></span></div>
-						</div><!-- end .todoListHeaderRight -->
-					</div><!-- end .todoListHeader -->
-					<div class="todoListItems" html-sortable="controller.sortableOptions" ng-model="todoList.listItems">
-						<!-- <div class="todoItem" ng-repeat="todoItem in todoList.listItems | orderBy: 'order'"> -->
-						<div class="todoItem" ng-repeat="todoItem in todoList.listItems">
-							<div class="todoItemLeft">
-								<div class="todoItemDragHandle">
-									<span class="icomoon icon-pushpin"></span>
-								</div><!-- end .todoItemDragHandle -->
-								<div class="todoItemName transitionHover" ng-if="!todoItem.editable" ng-click="controller.enableEditingName(todoItem)">
-									{{ todoItem.taskName }}
-								</div><!-- end .todoItemName -->
-								<div class="todoItemNameEdit" ng-if="todoItem.editable" >
-									<input type="text" ng-model="todoItem.taskName" focus-element="todoItem.editable" on-enter-or-escape="controller.disableEditingName(todoItem)" ng-blur="controller.disableEditingName(todoItem)" ng-focus="controller.clearIfDefault($event)" />
-								</div><!-- end .todoItemNameEdit -->
-							</div><!-- end .todoItemLeft -->
-							<div class="todoItemRight">
-								<div class="listItemButton transitionHover todoItemStatus icomoon" ng-class="todoItem.done? 'done icon-checkmark' : 'notDone' " ng-click="controller.toggleTaskStatus(todoItem.id)"></div>
-								<div class="listItemButton transitionHover todoItemDelete"><span class="icomoon icon-bin" ng-click="controller.deleteListItem(todoList.listId, todoItem.id)"></span></div>
-								<div class="listItemButton transitionHover todoItemEdit"><span class="icomoon icon-pencil" ng-click="controller.enableEditingName(todoItem)" ng-show="!todoItem.editable"></span></div>
-								<div class="listItemButton transitionHover todoItemEdit"><span class="icomoon icon-pencil" ng-click="controller.disableEditingName(todoItem)" ng-show="todoItem.editable"></span></div>
-							</div><!-- end .todoItemRight -->
-						</div><!-- end .todoList -->
-					</div><!-- end .todoListItems -->
+					<div class="todoListInner">
+						<div class="todoListHeader">
+							<div class="todoListHeaderLeft">
+								<div class="todoListName transitionHover" ng-if="!todoList.editable" ng-click="controller.enableEditingName(todoList)">
+									{{ todoList.listName }}
+								</div><!-- end .todoListName -->
+								<div class="todoListNameEdit" ng-if="todoList.editable">
+									<input type="text" class="listNameInput" ng-model="todoList.listName" focus-element="todoList.editable" on-enter-or-escape="controller.disableEditingName(todoList)" ng-blur="controller.disableEditingName(todoList)" ng-focus="controller.clearIfDefault($event)" />
+								</div><!-- end .todoListNameEdit -->
+							</div><!-- end .todoListHeaderLeft -->
+							<div class="todoListHeaderRight">
+								<div class="listButton transitionHover todoListDelete"><span class="icomoon icon-bin" ng-click="controller.deleteList(todoList.listId)"></span></div>
+								<div class="listButton transitionHover todoListAddItem" ng-click="controller.addListItem(todoList.listId)"><span class="icomoon icon-plus"></span></div>
+								<div class="listButton transitionHover todoListEditName"><span class="icomoon icon-pencil" ng-click="controller.enableEditingName(todoList)" ng-show="!todoList.editable"></span></div>
+								<div class="listButton transitionHover todoListEditName"><span class="icomoon icon-pencil" ng-click="controller.disableEditingName(todoList)" ng-show="todoList.editable"></span></div>
+							</div><!-- end .todoListHeaderRight -->
+						</div><!-- end .todoListHeader -->
+						<div class="todoListItems" html-sortable="controller.sortableOptions" ng-model="todoList.listItems">
+							<!-- <div class="todoItem" ng-repeat="todoItem in todoList.listItems | orderBy: 'order'"> -->
+							<div class="todoItem" ng-repeat="todoItem in todoList.listItems">
+								<div class="todoItemLeft">
+									<div class="todoItemDragHandle">
+										<span class="icomoon icon-pushpin"></span>
+									</div><!-- end .todoItemDragHandle -->
+									<div class="todoItemName transitionHover" ng-if="!todoItem.editable" ng-click="controller.enableEditingName(todoItem)">
+										{{ todoItem.taskName }}
+									</div><!-- end .todoItemName -->
+									<div class="todoItemNameEdit" ng-if="todoItem.editable" >
+										<input type="text" ng-model="todoItem.taskName" focus-element="todoItem.editable" on-enter-or-escape="controller.disableEditingName(todoItem)" ng-blur="controller.disableEditingName(todoItem)" ng-focus="controller.clearIfDefault($event)" />
+									</div><!-- end .todoItemNameEdit -->
+								</div><!-- end .todoItemLeft -->
+								<div class="todoItemRight">
+									<div class="listItemButton transitionHover todoItemStatus icomoon" ng-class="todoItem.done? 'done icon-checkmark' : 'notDone' " ng-click="controller.toggleTaskStatus(todoItem.id)"></div>
+									<div class="listItemButton transitionHover todoItemDelete"><span class="icomoon icon-bin" ng-click="controller.deleteListItem(todoList.listId, todoItem.id)"></span></div>
+									<div class="listItemButton transitionHover todoItemEdit"><span class="icomoon icon-pencil" ng-click="controller.enableEditingName(todoItem)" ng-show="!todoItem.editable"></span></div>
+									<div class="listItemButton transitionHover todoItemEdit"><span class="icomoon icon-pencil" ng-click="controller.disableEditingName(todoItem)" ng-show="todoItem.editable"></span></div>
+								</div><!-- end .todoItemRight -->
+							</div><!-- end .todoList -->
+						</div><!-- end .todoListItems -->
+					</div><!-- end .todoListInner -->
 				</div><!-- end .todoList -->
 			</div><!-- end #todoLists -->
 		</div><!-- end .container -->

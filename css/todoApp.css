@@ -2,14 +2,17 @@ html { font-size: 10px; }
 body { margin: 0; padding: 0; background: #376DA4; color: #ace; font-family: Helvetica, Arial, sans-serif; font-size: 1.8rem; }
 * { box-sizing: border-box; }
 
+.spacer15 { height: 1.5rem; overflow: hidden; }
+
 .transitionHover { transition: all 1s ease-out; }
 .transitionHover:hover { transition: all 0.3s ease-out; }
 
-#todoLists { padding: 1rem; }
-.todoList { margin: 0 0 1rem 0; }
-.todoListHeader { font-size: 2.4rem; padding: 1rem 0 1rem 2rem; background: #00376D; display: table; width: 100%; }
-.todoListHeaderLeft { display: table-cell; vertical-align: middle; }
-.todoListHeaderRight { display: table-cell; vertical-align: middle; }
+#todoLists {  }
+.todoList { margin-bottom: 1.5rem; }
+.todoListInner { box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6); background: #00376D; padding: 0 1rem 1rem 1rem; }
+.todoListHeader { font-size: 2.4rem; padding: 1rem 0 1rem 0; background: #00376D; display: table; width: 100%; }
+.todoListHeaderLeft { display: table-cell; vertical-align: middle; width: auto; }
+.todoListHeaderRight { display: table-cell; vertical-align: middle; width: 14rem; }
 .todoListName { padding-left: 10px; border: 2px solid transparent; cursor: pointer; }
 .todoListName:hover { color: #FFF; }
 .todoItem { display: table; width: 100%; table-layout: fixed; padding: 0 0 0 2rem; background: #124980; color: #BDF; }
@@ -21,6 +24,7 @@ body { margin: 0; padding: 0; background: #376DA4; color: #ace; font-family: Hel
 .todoItemName:hover { color: #FFF; }
 .todoItemNameEdit input { background: transparent; border: 2px solid #09F; font: inherit; color: #FFF; padding: 0 8px; line-height: 46px; width: 80%; }
 .todoItemStatus { width: 2.4rem; height: 2.4rem; border: 2px solid #ace; float: right; border-radius: 50%; cursor: pointer; }
+.todoItemStatus:hover { border-color: #0F0; }
 .todoItemStatus.done { border-color: transparent; color: #0F0; }
 
 .listButton { float: right; margin: 0 1.6rem 0 0; font-size: 2rem; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; }
@@ -36,4 +40,10 @@ body { margin: 0; padding: 0; background: #376DA4; color: #ace; font-family: Hel
 .controlButton:hover { background: #06F; color: #FFF; }
 
 .listNameInput { background: transparent; border: 2px solid #09F; font: inherit; color: #FFF; padding: 0 10px; outline: none; }
+
+@media (max-width: 640px)
+{
+	html { font-size: 8px; }
+	.todoListInner { box-shadow: none; }
+}
 
