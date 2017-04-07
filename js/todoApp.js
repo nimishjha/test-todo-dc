@@ -6,11 +6,7 @@ todoApp.controller('MainController', [function() {
 	self.todoLists = [];
 
 	self.sortableOptions = {
-		handle:'.todoItemDragHandle',
-		stop: function(list, dropped_index)
-		{
-			console.log("drag stopped");
-		}
+		handle:'.todoItemDragHandle'
 	};
 
 	function List(listName)
@@ -46,7 +42,7 @@ todoApp.controller('MainController', [function() {
 
 	self.createList = function()
 	{
-		var listName = "New list " + (self.todoLists.length + 1);
+		var listName = "[New list " + (self.todoLists.length + 1) + "]";
 		var list = new List(listName);
 		self.todoLists.push(list);
 	};
@@ -67,10 +63,10 @@ todoApp.controller('MainController', [function() {
 	self.addListItem = function(listId)
 	{
 		var listItemObject = {};
-		listItemObject.taskName = "New task ";
+		listItemObject.taskName = "[New task ";
 		var listItem = new ListItem(listItemObject);
 		var targetListIndex = getListIndexById(listId);
-		listItem.taskName += " " + self.todoLists[targetListIndex].listItems.length;
+		listItem.taskName += " " + self.todoLists[targetListIndex].listItems.length + "]";
 		if(targetListIndex !== -1)
 		{
 			self.todoLists[targetListIndex].listItems.push(listItem);
@@ -144,7 +140,7 @@ todoApp.controller('MainController', [function() {
 
 	self.clearIfDefault = function($event)
 	{
-		if($event.target.value.indexOf("New task") === 0)
+		if($event.target.value.indexOf("[New") === 0)
 			$event.target.value = "";
 	};
 
@@ -159,12 +155,12 @@ todoApp.directive('focusElement', function () {
 	}
 });
 
-todoApp.directive('onKeypressEnter', function () {
+todoApp.directive('onEnterOrEscape', function () {
 	return function ($scope, $element, $attrs) {
 		$element.bind("keydown keypress", function (event) {
-			if (event.which === 13) {
+			if (event.which === 13 || event.which === 27) {
 				$scope.$apply(function () {
-					$scope.$eval($attrs.onKeypressEnter);
+					$scope.$eval($attrs.onEnterOrEscape);
 				});
 				event.preventDefault();
 			}

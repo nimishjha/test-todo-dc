@@ -1,17 +1,24 @@
 html { font-size: 10px; }
-body { background: #456; color: #ace; font-family: Helvetica, Arial, sans-serif; font-size: 1.8rem; padding: 100px; }
+body { margin: 0; padding: 0; background: #376DA4; color: #ace; font-family: Helvetica, Arial, sans-serif; font-size: 1.8rem; }
 * { box-sizing: border-box; }
 
+.transitionHover { transition: all 1s ease-out; }
+.transitionHover:hover { transition: all 0.3s ease-out; }
+
+#todoLists { padding: 1rem; }
 .todoList { max-width: 500px; background: #456; margin: 0 0 1rem 0; }
-.todoListHeader { font-size: 2.4rem; padding: 1.6rem 0 1.5rem 2rem; background: #182838; display: table; width: 100%; }
+.todoListHeader { font-size: 2.4rem; padding: 1.6rem 0 1.5rem 2rem; background: #00376D; display: table; width: 100%; }
 .todoListHeaderLeft { display: table-cell; vertical-align: middle; }
 .todoListHeaderRight { display: table-cell; vertical-align: middle; }
 .todoListName { padding-left: 10px; border: 2px solid transparent; cursor: pointer; }
-.todoItem { display: table; width: 100%; table-layout: fixed; padding: 0 0 0 2rem; background: #283848; border-bottom: 1px solid #345; }
+.todoListName:hover { color: #FFF; }
+.todoItem { display: table; width: 100%; table-layout: fixed; padding: 0 0 0 2rem; background: #124980; color: #BDF; }
 .todoItemLeft { display: table-cell; vertical-align: middle; width: auto; }
 .todoItemRight { display: table-cell; vertical-align: middle; width: 12rem; }
-.todoItemDragHandle { float: left; padding: 15px 15px 15px 0; cursor: pointer; }
+.todoItemDragHandle { float: left; padding: 15px 15px 15px 0; cursor: pointer; transition: all 1s ease-out; }
+.todoItemDragHandle:hover { color: #FFF; transition: all 0.25s ease-out; }
 .todoItemName { line-height: 50px; padding-left: 10px; cursor: pointer; }
+.todoItemName:hover { color: #FFF; }
 .todoItemNameEdit input { background: transparent; border: 2px solid #09F; font: inherit; color: #FFF; padding: 0 8px; line-height: 46px; width: 80%; }
 .todoItemStatus { width: 2.4rem; height: 2.4rem; border: 2px solid #ace; float: right; border-radius: 50%; transition: background-color 0.5s ease-out, border-color 0.5s ease-out; cursor: pointer; }
 .todoItemStatus.done { border-color: transparent; color: #0F0; }
@@ -22,11 +29,11 @@ body { background: #456; color: #ace; font-family: Helvetica, Arial, sans-serif;
 .listItemButton { float: right; margin: 0 1.5rem 0 0; font-size: 2rem; cursor: pointer; transition: color 1s ease-out, background-color 1s ease-out; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;}
 .listItemButton:hover { color: #FFF; transition: color 0.25s ease-out, background-color 0.25s ease-out; }
 
-#controls { margin: 0 0 1rem 0; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; }
+#controls { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; background: #124980; padding: 1rem; }
 #controls::after { content: ""; display: block; clear: both; }
-.controlButton { background: #234; display: inline-block; padding: 0 2rem; line-height: 5rem;  transition: all 1s ease-out; cursor: pointer; border: 2px solid #68A; }
+.controlButton { background: transparent; float: right; padding: 0 2rem; line-height: 5rem;  transition: all 1s ease-out; cursor: pointer; margin: 0 1rem 0 0; border-radius: 5px; }
 .controlButton span { margin-left: 2rem; }
-.controlButton:hover { background: #123; color: #FFF; transition: all 0.25s ease-out; border-color: #FFF; }
+.controlButton:hover { background: #06F; color: #FFF; transition: all 0.25s ease-out; }
 
 .listNameInput { background: transparent; border: 2px solid #09F; font: inherit; color: #FFF; padding: 0 10px; outline: none; }
 
