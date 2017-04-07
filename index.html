@@ -18,27 +18,33 @@
 		<div class="todoList" ng-repeat="todoList in controller.todoLists" >
 			<div class="todoListHeader">
 				<div class="todoListHeaderLeft">
-					<div class="todoListName">
+					<div class="todoListName" ng-if="!todoList.editable">
 						{{ todoList.listName }}
 					</div><!-- end .todoListName -->
+					<div class="todoListNameEdit" ng-if="todoList.editable">
+						<input type="text" class="listNameInput" ng-model="todoList.listName" focus-element="todoList.editable" on-keypress-enter="controller.disableEditingName(todoList)" />
+					</div><!-- end .todoListNameEdit -->
 				</div><!-- end .todoListHeaderLeft -->
 				<div class="todoListHeaderRight">
 					<div class="listButton todoListDelete"><span class="icomoon icon-bin" ng-click="controller.deleteList(todoList.listId)"></span></div>
 					<div class="listButton todoListAddItem" ng-click="controller.addListItem(todoList.listId)"><span class="icomoon icon-plus"></span></div>
-					<div class="listButton todoListEditName"><span class="icomoon icon-pencil"></span></div>
+					<div class="listButton todoListEditName"><span class="icomoon icon-pencil" ng-click="controller.toggleEditingName(todoList)"></span></div>
 				</div><!-- end .todoListHeaderRight -->
 			</div><!-- end .todoListHeader -->
 			<div class="todoListItems">
 				<div class="todoItem" ng-repeat="todoItem in todoList.listItems | orderBy: 'order'">
 					<div class="todoItemLeft">
-						<div class="todoItemName">
+						<div class="todoItemName" ng-if="!todoItem.editable" >
 							{{ todoItem.taskName }}
 						</div><!-- end .todoItemName -->
+						<div class="todoItemNameEdit" ng-if="todoItem.editable" >
+							<input type="text" ng-model="todoItem.taskName" focus-element="todoItem.editable" on-keypress-enter="controller.disableEditingName(todoItem)" />
+						</div><!-- end .todoItemNameEdit -->
 					</div><!-- end .todoItemLeft -->
 					<div class="todoItemRight">
 						<div class="listItemButton todoItemStatus icomoon" ng-class="todoItem.done? 'done icon-checkmark' : 'notDone' " ng-click="controller.toggleTaskStatus(todoItem.id)"></div>
 						<div class="listItemButton todoItemDelete"><span class="icomoon icon-bin" ng-click="controller.deleteListItem(todoList.listId, todoItem.id)"></span></div>
-						<div class="listItemButton todoItemEdit"><span class="icomoon icon-pencil"></span></div>
+						<div class="listItemButton todoItemEdit"><span class="icomoon icon-pencil" ng-click="controller.toggleEditingName(todoItem)"></span></div>
 					</div><!-- end .todoItemRight -->
 				</div><!-- end .todoList -->
 			</div><!-- end .todoListItems -->

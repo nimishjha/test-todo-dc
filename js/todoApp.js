@@ -3,6 +3,7 @@ angular.module('todoApp', []).controller('MainController', [function() {
 //	Begin controller
 //
 	var self = this;
+	self.getNewListName = false;
 	self.todoLists = [
 		{
 			listId: 678,
@@ -11,16 +12,18 @@ angular.module('todoApp', []).controller('MainController', [function() {
 				{ id: 1, order: 1, taskName: 'Buy groceries', done: false },
 				{ id: 2, order: 2, taskName: 'Go to Mars', done: false },
 				{ id: 3, order: 3, taskName: 'Walk the dog', done: false }
-			]
+			],
+			editable: false
 		},
 		{
 			listId: 123,
 			listName: "List Two",
 			listItems: [
-				{ id: 4, order: 10, taskName: 'Play DOOM', done: false },
-				{ id: 5, order: 20, taskName: 'Read a book', done: false },
+				{ id: 4, order: 10, taskName: 'Read a book', done: false },
+				{ id: 5, order: 20, taskName: 'Check out some new music', done: false },
 				{ id: 6, order: 30, taskName: 'Get to the chopper', done: false }
-			]
+			],
+			editable: false
 		}
 	];
 
@@ -32,6 +35,7 @@ angular.module('todoApp', []).controller('MainController', [function() {
 		this.listId = self.createUUID("todoList");
 		this.listName = listName;
 		this.listItems = [];
+		this.editable = false;
 	}
 
 	//
@@ -43,6 +47,7 @@ angular.module('todoApp', []).controller('MainController', [function() {
 		this.taskName = listItem.taskName;
 		this.id = self.createUUID("todoItem");
 		this.done = false;
+		this.editable = false;
 	}
 
 	//
@@ -62,9 +67,7 @@ angular.module('todoApp', []).controller('MainController', [function() {
 
 	self.createList = function()
 	{
-		var listName = prompt("Listname");
-		if(!listName.length)
-			return;
+		var listName = "New list";
 		var list = new List(listName);
 		self.todoLists.push(list);
 	};
@@ -85,24 +88,25 @@ angular.module('todoApp', []).controller('MainController', [function() {
 	self.addListItem = function(listId)
 	{
 		var listItemObject = {};
-		listItemObject.taskName = prompt("taskName");
-		listItemObject.order = Number(prompt("order"));
+		var targetListIndex = getListIndexById(listId);
+		if(targetListIndex !== -1)
+		{
+			listItemObject.order = self.todoLists[targetListIndex].listItems.length;
+		}
+		else
+		{
+			console.warn("Could not get list with id " + listId);
+			return;
+		}
+		listItemObject.taskName = "New task";
 
-		if(!(listItemObject.order && listItemObject.taskName))
+		if(!(typeof(listItemObject.order) === "number" && listItemObject.taskName))
 		{
 			console.warn("listItem is missing essential properties; order is " + listItemObject.order + " and taskName is " + listItemObject.taskName);
 			return;
 		}
 		var listItem = new ListItem(listItemObject);
-		var targetListIndex = getListIndexById(listId);
-		if(targetListIndex !== -1)
-		{
-			self.todoLists[targetListIndex].listItems.push(listItem);
-		}
-		else
-		{
-			console.warn("Could not get list with id " + listId);
-		}
+		self.todoLists[targetListIndex].listItems.push(listItem);
 	};
 
 	self.deleteListItem = function(listId, targetItemId)
@@ -125,6 +129,16 @@ angular.module('todoApp', []).controller('MainController', [function() {
 		{
 			console.warn("Could not get list with id " + listId);
 		}
+	};
+
+	self.toggleEditingName = function(item)
+	{
+		item.editable = !item.editable;
+	};
+
+	self.disableEditingName = function(item)
+	{
+		item.editable = false;
 	};
 
 	self.createUUID = function(prefix)
@@ -158,4 +172,22 @@ angular.module('todoApp', []).controller('MainController', [function() {
 //
 //	End controller
 //
-}]);
+}]).directive('focusElement', function () {
+	return {
+		restrict: 'A',
+		link: function ($scope, $element, $attrs) {
+			$element[0].focus();
+		}
+	}
+}).directive('onKeypressEnter', function () {
+	return function ($scope, $element, $attrs) {
+		$element.bind("keydown keypress", function (event) {
+			if (event.which === 13) {
+				$scope.$apply(function () {
+					$scope.$eval($attrs.onKeypressEnter);
+				});
+				event.preventDefault();
+			}
+		});
+	};
+});

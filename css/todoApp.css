@@ -6,10 +6,12 @@ body { background: #456; color: #ace; font-family: Helvetica, Arial, sans-serif;
 .todoListHeader { font-size: 2.4rem; padding: 1.6rem 0 1.5rem 2rem; background: #123; display: table; width: 100%; }
 .todoListHeaderLeft { display: table-cell; vertical-align: middle; }
 .todoListHeaderRight { display: table-cell; vertical-align: middle; }
-.todoListName { }
-.todoItem { display: table; width: 100%; table-layout: fixed; padding: 1rem 0 1rem 2rem; background: #283848; border-bottom: 1px solid #345; }
+.todoListName { padding-left: 10px; }
+.todoItem { display: table; width: 100%; table-layout: fixed; padding: 0 0 0 2rem; background: #283848; border-bottom: 1px solid #345; }
 .todoItemLeft { display: table-cell; vertical-align: middle; width: auto; }
 .todoItemRight { display: table-cell; vertical-align: middle; width: 12rem; }
+.todoItemName { line-height: 50px; padding-left: 10px; }
+.todoItemNameEdit input { background: transparent; border: 2px solid #09F; font: inherit; color: #FFF; padding: 0 8px; line-height: 46px; width: 100%; }
 .todoItemStatus { width: 2.4rem; height: 2.4rem; border: 2px solid #ace; float: right; border-radius: 50%; transition: background-color 0.5s ease-out, border-color 0.5s ease-out; cursor: pointer; }
 .todoItemStatus.done { border-color: transparent; color: #0F0; }
 
@@ -24,3 +26,6 @@ body { background: #456; color: #ace; font-family: Helvetica, Arial, sans-serif;
 .controlButton { background: #234; display: inline-block; padding: 0 2rem; line-height: 5rem;  transition: all 1s ease-out; cursor: pointer; border: 2px solid #68A; }
 .controlButton span { margin-left: 2rem; }
 .controlButton:hover { background: #123; color: #FFF; transition: all 0.25s ease-out; border-color: #FFF; }
+
+.listNameInput { background: transparent; border: 2px solid #09F; font: inherit; color: #FFF; padding: 0 8px; }
+
