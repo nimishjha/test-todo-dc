@@ -100,9 +100,9 @@ todoApp.controller('MainController', [function() {
 		}
 	};
 
-	self.toggleEditingName = function(item)
+	self.enableEditingName = function(item)
 	{
-		item.editable = !item.editable;
+		item.editable = true;
 	};
 
 	self.disableEditingName = function(item)
