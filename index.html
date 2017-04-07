@@ -18,7 +18,7 @@
 		<div class="todoList" ng-repeat="todoList in controller.todoLists" >
 			<div class="todoListHeader">
 				<div class="todoListHeaderLeft">
-					<div class="todoListName" ng-if="!todoList.editable">
+					<div class="todoListName" ng-if="!todoList.editable" ng-click="controller.toggleEditingName(todoList)">
 						{{ todoList.listName }}
 					</div><!-- end .todoListName -->
 					<div class="todoListNameEdit" ng-if="todoList.editable">
@@ -31,14 +31,18 @@
 					<div class="listButton todoListEditName"><span class="icomoon icon-pencil" ng-click="controller.toggleEditingName(todoList)"></span></div>
 				</div><!-- end .todoListHeaderRight -->
 			</div><!-- end .todoListHeader -->
-			<div class="todoListItems">
-				<div class="todoItem" ng-repeat="todoItem in todoList.listItems | orderBy: 'order'">
+			<div class="todoListItems" html-sortable="controller.sortableOptions" ng-model="todoList.listItems">
+				<!-- <div class="todoItem" ng-repeat="todoItem in todoList.listItems | orderBy: 'order'"> -->
+				<div class="todoItem" ng-repeat="todoItem in todoList.listItems">
 					<div class="todoItemLeft">
-						<div class="todoItemName" ng-if="!todoItem.editable" >
+						<div class="todoItemDragHandle">
+							<span class="icomoon icon-menu2"></span>
+						</div><!-- end .todoItemDragHandle -->
+						<div class="todoItemName" ng-if="!todoItem.editable" ng-click="controller.toggleEditingName(todoItem)">
 							{{ todoItem.taskName }}
 						</div><!-- end .todoItemName -->
 						<div class="todoItemNameEdit" ng-if="todoItem.editable" >
-							<input type="text" ng-model="todoItem.taskName" focus-element="todoItem.editable" on-keypress-enter="controller.disableEditingName(todoItem)" />
+							<input type="text" ng-model="todoItem.taskName" focus-element="todoItem.editable" on-keypress-enter="controller.disableEditingName(todoItem)" ng-focus="controller.clearIfDefault($event)" />
 						</div><!-- end .todoItemNameEdit -->
 					</div><!-- end .todoItemLeft -->
 					<div class="todoItemRight">
@@ -52,6 +56,7 @@
 	</div><!-- end #todoLists -->
 
 	<script type="text/javascript" src="jslib/angular.min.js"></script>
+	<script type="text/javascript" src="jslib/html5-sortable.js"></script>
 	<script type="text/javascript" src="js/todoApp.js"></script>
 
 </body>
