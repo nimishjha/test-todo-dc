@@ -1,5 +1,5 @@
-html { font-size: 10px; }
-body { margin: 0; padding: 0; background: #376DA4; color: #ace; font-family: Helvetica, Arial, sans-serif; font-size: 1.8rem; }
+html { font-size: 10px; font-family: Helvetica, Arial, sans-serif; }
+body { margin: 0; padding: 0; background: #376DA4; color: #ace; font-family: inherit; font-size: 18px; }
 * { box-sizing: border-box; }
 
 .spacer15 { height: 1.5rem; overflow: hidden; }
@@ -8,21 +8,22 @@ body { margin: 0; padding: 0; background: #376DA4; color: #ace; font-family: Hel
 .transitionHover:hover { transition: all 0.3s ease-out; }
 
 #todoLists {  }
-.todoList { margin-bottom: 1.5rem; }
+.todoList { margin-bottom: 1.5rem; font-size: 1.4rem; }
 .todoListInner { box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6); background: #00376D; padding: 0 1rem 1rem 1rem; }
 .todoListHeader { font-size: 2.4rem; padding: 1rem 0 1rem 0; background: #00376D; display: table; width: 100%; }
 .todoListHeaderLeft { display: table-cell; vertical-align: middle; width: auto; }
 .todoListHeaderRight { display: table-cell; vertical-align: middle; width: 14rem; }
 .todoListName { padding-left: 10px; border: 2px solid transparent; cursor: pointer; }
 .todoListName:hover { color: #FFF; }
-.todoItem { display: table; width: 100%; table-layout: fixed; padding: 0 0 0 2rem; background: #124980; color: #BDF; }
+.todoItem { display: table; width: 100%; table-layout: fixed; padding: 0 0 0 1rem; background: #124980; color: #BDF; }
+.todoItemBeforeLeft { display: table-cell; vertical-align: middle; width: 1.5rem; }
 .todoItemLeft { display: table-cell; vertical-align: middle; width: auto; }
 .todoItemRight { display: table-cell; vertical-align: middle; width: 12rem; }
 .todoItemDragHandle { float: left; padding: 15px 15px 15px 0; cursor: pointer; }
 .todoItemDragHandle:hover { color: #FFF; }
-.todoItemName { line-height: 50px; padding-left: 10px; cursor: pointer; }
+.todoItemName { padding-left: 10px; cursor: pointer; }
 .todoItemName:hover { color: #FFF; }
-.todoItemNameEdit input { background: transparent; border: 2px solid #09F; font: inherit; color: #FFF; padding: 0 8px; line-height: 46px; width: 80%; }
+.todoItemNameEdit input { background: transparent; border: 2px solid #09F; font: inherit; color: #FFF; padding: 0 8px; line-height: 3rem; width: 80%; }
 .todoItemStatus { width: 2.4rem; height: 2.4rem; border: 2px solid #ace; float: right; border-radius: 50%; cursor: pointer; }
 .todoItemStatus:hover { border-color: #0F0; }
 .todoItemStatus.done { border-color: transparent; color: #0F0; }
@@ -43,7 +44,9 @@ body { margin: 0; padding: 0; background: #376DA4; color: #ace; font-family: Hel
 
 @media (max-width: 640px)
 {
-	html { font-size: 8px; }
 	.todoListInner { box-shadow: none; }
+	.todoItemLeft { display: block; width: 100%; padding: 1rem 0; }
+	.todoItemRight { display: block; width: 100%; }
+	.todoItem { margin-bottom: 1rem; padding-bottom: 1rem; }
 }
 

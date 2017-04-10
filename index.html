@@ -24,7 +24,7 @@
 		<div class="spacer15">
 		</div><!-- end .spacer15 -->
 
-		<div class="container">
+		<div class="container-fluid">
 			<div id="todoLists" class="row">
 				<div class="todoList col-md-6 col-sm-12" ng-repeat="todoList in controller.todoLists">
 					<div class="todoListInner">
@@ -46,10 +46,12 @@
 						</div><!-- end .todoListHeader -->
 						<div class="todoListItems" html-sortable="controller.sortableOptions" ng-model="todoList.listItems">
 							<div class="todoItem" ng-repeat="todoItem in todoList.listItems | orderBy: 'order'">
-								<div class="todoItemLeft">
+								<div class="todoItemBeforeLeft">
 									<div class="todoItemDragHandle">
 										<span class="icomoon icon-pushpin"></span>
 									</div><!-- end .todoItemDragHandle -->
+								</div><!-- end .todoItemBeforeLeft -->
+								<div class="todoItemLeft">
 									<div class="todoItemName transitionHover" ng-if="!todoItem.editable" ng-click="controller.enableEditingName(todoItem)">
 										{{ todoItem.taskName }}
 									</div><!-- end .todoItemName -->

@@ -1,8 +1,32 @@
 var todoApp = angular.module('todoApp', ["html5.sortable"]);
 
-todoApp.controller('MainController', [function() {
+todoApp.controller('MainController', ['$log', function($log) {
 	var self = this;
-	self.todoLists = [];
+	self.todoLists = [
+		{
+			listId: 678,
+			listName: "How to use",
+			listItems: [
+				{ id: 1, order: 1, taskName: 'Click on "New List" to add a list', done: false },
+				{ id: 2, order: 2, taskName: 'Click on the + icon to add tasks', done: false },
+				{ id: 3, order: 3, taskName: 'Click on the pencil icon to edit the name', done: false },
+				{ id: 4, order: 4, taskName: 'Or click on the names directly', done: false },
+				{ id: 5, order: 5, taskName: 'To stop editing names, press Enter or Esc', done: false },
+				{ id: 6, order: 6, taskName: 'or click on the pencil again, ', done: false },
+				{ id: 7, order: 7, taskName: 'or anywhere outside the input field', done: false },
+				{ id: 8, order: 8, taskName: 'To drag, click on the pin', done: false }
+			]
+		},
+		{
+			listId: 123,
+			listName: "Todo",
+			listItems: [
+				{ id: 4, order: 10, taskName: 'Implement the back end', done: false },
+				{ id: 5, order: 20, taskName: 'Add delete confirmation dialogue boxes', done: false },
+				{ id: 6, order: 30, taskName: 'Get to the chopper', done: false }
+			]
+		}
+	];
 
 	self.sortableOptions = {
 		handle:'.todoItemDragHandle',
@@ -59,7 +83,7 @@ todoApp.controller('MainController', [function() {
 		}
 		else
 		{
-			console.warn("Could not get list with id " + targetListId);
+			$log.warn("Could not get list with id " + targetListId);
 		}
 	};
 
@@ -77,10 +101,10 @@ todoApp.controller('MainController', [function() {
 		}
 		else
 		{
-			console.warn("Could not get list with id " + listId);
+			$log.warn("Could not get list with id " + listId);
 			return;
 		}
-		// console.log(JSON.stringify(self.todoLists));
+		// $log.info(JSON.stringify(self.todoLists));
 	};
 
 	self.deleteListItem = function(listId, targetItemId)
@@ -101,7 +125,7 @@ todoApp.controller('MainController', [function() {
 		}
 		else
 		{
-			console.warn("Could not get list with id " + listId);
+			$log.warn("Could not get list with id " + listId);
 		}
 	};
 
